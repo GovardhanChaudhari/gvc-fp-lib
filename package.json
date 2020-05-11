@@ -9,13 +9,12 @@
     "dist"
   ],
   "scripts": {
-    "start": "ts-node src/main/main.ts",
+    "compile": "tsc",
     "build": "npm run clean && npm run compile",
     "clean": "rimraf -rf ./dist",
-    "c": "ts-node src/RamdaTest.ts",
-    "lint": "eslint src/**/*.ts",
+    "crt": "ts-node src/RamdaTest.ts",
     "test": "jest",
-    "test-dev": "jest --watch",
+    "td": "jest --watch",
     "tr": "ts-node-dev --respawn --transpileOnly --no-notify src/RamdaTest.ts"
   },
   "devDependencies": {
