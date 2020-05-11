@@ -44,7 +44,7 @@ export const removeOneParam = (...params) => R.remove(startFromFirst, 1 , params
 
 export const arrayToCommaSeparatedParams = func => array => func(...array);
 
-export const executeValFunc = (val, name, obj) => [val(obj[name]), name, obj];
+export const executeValueFunc = (val, name, obj) => [val(obj[name]), name, obj];
 
 export const isPredicateTrue = (predicate, value, name, obj) => predicate(obj[name]);
 
