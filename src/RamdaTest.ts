@@ -1,6 +1,3 @@
-// @ts-nocheck
-/*
-
 import R from "ramda";
 import {log} from "util";
 
@@ -16,4 +13,3 @@ const simpleUpdateProp = pipeWith([removeOneParam,updateProp]);
 const rp1 = pipeWith([removeOneParam,removeOneParam]);
 // log(rp1(1,2,3));
 log(simpleUpdateProp(1,5,"x",{x:1}));
-*/
