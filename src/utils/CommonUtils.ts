@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Note that following functions may mutate object var
 import R from "ramda";
 
