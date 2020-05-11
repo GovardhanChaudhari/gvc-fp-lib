@@ -1,5 +1,5 @@
 // @ts-nocheck
-// Note that following functions mutate object var
+// Note that following functions may mutate object var
 import R from "ramda";
 
 //TODO: Add parameter information for each function
@@ -39,9 +39,6 @@ const startFromFirst = 0;
 
 // Return array
 // export const removeNParams = (numberOfParamsToRemove) => R.curry((...params) => R.remove(startFromFirst, numberOfParamsToRemove, params));
-
-export const fourthArg = R.nthArg(3);
-
 // const removeOneParam = removeNParams(1);
 export const removeOneParam = (...params) => R.remove(startFromFirst, 1 , params);
 
