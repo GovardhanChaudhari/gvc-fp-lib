@@ -50,6 +50,6 @@ export const isPredicateTrue = (predicate, value, name, obj) => predicate(obj[na
 export const passResToFun = (func,res) => func(...res);
 
 // @ts-ignore
-export const pipeFunc = R.pipeWith(passResToFun);
+export const pipeFunc = (...params)=>R.pipeWith(passResToFun,params);
 
 
