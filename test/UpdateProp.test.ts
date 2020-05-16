@@ -1,6 +1,7 @@
 import {
   isNot,
   isNullOrEmpty,
+  commaSeparatedString,
 } from "../src";
 import {
   updateProp,
@@ -32,9 +33,25 @@ describe("UpdateProp", () => {
   describe("updatePropIf", () => {
     test('Should update object if condition is true', () => {
       // @ts-ignore
-      const updatePropX = updatePropIf(x => x > 0, 4, "x");
+      const updatePropX = updatePropIf(x => x > 0);
       const expected = {x: 4};
-      const result = updatePropX({x: 1});
+      const result = updatePropX(4, "x",{x: 1});
+      expect(result).toEqual(expected);
+    });
+
+    test('Case iSArray predicate : Should update object if condition is true', () => {
+      // @ts-ignore
+      const updatePropX = updatePropIf(Array.isArray,commaSeparatedString);
+      const expected = {x: "1,2"};
+      const result = updatePropX("x",{x: [1,2]});
+      expect(result).toEqual(expected);
+    });
+
+    test('Case iSArray predicate : Should not update object if condition is false', () => {
+      // @ts-ignore
+      const updatePropX = updatePropIf(Array.isArray,commaSeparatedString);
+      const expected = {x: 1};
+      const result = updatePropX("x",{x: 1});
       expect(result).toEqual(expected);
     });
 
