@@ -31,7 +31,6 @@ describe("UpdateProps", () => {
       const result = updatePropXWith4({x: 0, y: 2});
       expect(result).toEqual(expected);
     });
-
   });
 
   describe("updateObjectsProps", () => {
