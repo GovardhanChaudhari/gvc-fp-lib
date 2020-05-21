@@ -1,5 +1,9 @@
-import R from "ramda";
+import * as R from "ramda";
 import {updateProp, updatePropIf} from "./UpdateProp";
+
+
+
+// export const updateProps = R.curryN(3,R.reduce((acc, name) => updateProp(R.__, name, acc), R.__));
 
 export const updateProps = R.curry((value, names, obj) =>  names.reduce((acc, name) => updateProp(value, name, acc), obj));
 

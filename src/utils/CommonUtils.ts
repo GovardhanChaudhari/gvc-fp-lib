@@ -1,5 +1,5 @@
 // Note that following functions may mutate object var
-import R from "ramda";
+import *as R from "ramda";
 
 //TODO: Add parameter information for each function
 export const isNull = R.isNil;
@@ -39,7 +39,7 @@ const startFromFirst = 0;
 // Return array
 // export const removeNParams = (numberOfParamsToRemove) => R.curry((...params) => R.remove(startFromFirst, numberOfParamsToRemove, params));
 // const removeOneParam = removeNParams(1);
-export const removeOneParam = (...params) => R.remove(startFromFirst, 1 , params);
+export const removeOneParam = (...params) => R.remove(startFromFirst, 1, params);
 
 export const arrayToCommaSeparatedParams = func => array => func(...array);
 
@@ -47,8 +47,8 @@ export const executeValueFunc = (val, name, obj) => [val(obj[name]), name, obj];
 
 export const isPredicateTrue = (predicate, value, name, obj) => predicate(obj[name]);
 
-export const passResToFun = (func,res) => func(...res);
+export const passResToFun = (func, res) => func(...res);
 
-export const pipeFunc = (...params)=>R.pipeWith(passResToFun,params);
+export const pipeFunc = (...params) => R.pipeWith(passResToFun, params);
 
 
