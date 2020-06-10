@@ -51,4 +51,8 @@ export const passResToFun = (func,res) => func(...res);
 
 export const pipeFunc = (...params)=>R.pipeWith(passResToFun,params);
 
+export const paramToFunc = p=>()=>p;
 
+export const toFunction = R.unless(isFunction,paramToFunc);
+
+export const toEvolveFunctionParam = (key,value)=>({[key]:toFunction(value)});

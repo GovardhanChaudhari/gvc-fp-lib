@@ -1,26 +1,13 @@
 import R from "ramda";
 import {
-  pipeFunc,
-  isFunction,
-  executeValueFunc,
   isPredicateTrue,
-  removeOneParam,
+  toEvolveFunctionParam,
 } from "./CommonUtils";
 
-const inputObject = R.nthArg(3);
-
-const updateProp = R.curry((value, name, obj) =>
-  ({...obj, ...{[name]: value}}));
-
-const funcUpdatePropWith = pipeFunc(executeValueFunc, updateProp);
-
-const updatePropWith = R.ifElse(isFunction, funcUpdatePropWith, updateProp);
-
-const updatePropWith3Params = pipeFunc(removeOneParam, updatePropWith);
-
-const updatePropIfWith = R.ifElse(isPredicateTrue, updatePropWith3Params, inputObject);
+const updateProp = R.curry((value, name, obj) => R.evolve(toEvolveFunctionParam(name, value), obj));
+const updatePropIf = R.curry((pred, value, name, obj) => isPredicateTrue(pred, value, name, obj) ? updateProp(value, name, obj) : obj);
 
 export {
-  updatePropWith as updateProp,
-  updatePropIfWith as updatePropIf
+  updateProp,
+  updatePropIf
 }
