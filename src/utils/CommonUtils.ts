@@ -16,6 +16,8 @@ export const isBoolean = R.is(Boolean);
 
 export const isFunction = R.is(Function);
 
+export const isObject = R.both(R.is(Object),R.complement(isFunction));
+
 export const trimAndIsEmpty = R.pipe(R.trim, R.isEmpty);
 
 export const isNot = func => (...args) => !func(...args);
@@ -47,7 +49,10 @@ export const arrayToCommaSeparatedParams = func => array => func(...array);
 
 export const executeValueFunc = (val, name, obj) => [val(obj[name]), name, obj];
 
-export const isPredicateTrue = (predicate, value, name, obj) => predicate(obj[name]);
+export const isPredicateTrue = (predicate, value, name, obj) => {
+  let finalPredicate = isObject(predicate) ? predicate[name] : predicate;
+  return finalPredicate(obj[name]);
+};
 
 export const passResToFun = (func, res) => func(...res);
 
@@ -59,10 +64,13 @@ export const toFunction = R.unless(isFunction, paramToFunc);
 
 export const toEvolveFunctionParam = (key, value) => ({[key]: toFunction(value)});
 
-export const createIfFunc = R.curry((func, pred, value, name, obj) =>
-  isPredicateTrue(pred, value, name, obj)
+export const createIfFunc = R.curry((func, pred, value, name, obj) => {
+  if(isObject(pred) && isUndefined(pred[name])) return obj;
+
+  return isPredicateTrue(pred, value, name, obj)
     ? func(value, name, obj)
-    : obj);
+    : obj;
+});
 
 export const createNamesReduceFunc = R.curry((func, value, names, obj) =>
   R.reduce((acc, name) => func(value, name, acc), obj, names));
