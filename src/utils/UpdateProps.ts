@@ -7,13 +7,14 @@ import {
   createNamesReduceFuncIf
 } from "./CommonUtils";
 
+const createUpdateObjectIf = R.curry((createFuc, pred, value, names, objects) =>
+  createFuc(pred, updatePropIf, value, names, objects));
+
 export const updateProps = createNamesReduceFunc(updateProp);
 
-export const updatePropsIf = R.curry((pred,value,names,obj)=>
-  createNamesReduceFuncIf(pred,updatePropIf,value,names,obj));
+export const updatePropsIf = createUpdateObjectIf(createNamesReduceFuncIf);
 
-export const updateObjectsProps = R.curry((value, names, objects) =>
-  createObjectsMapFunc(updateProp,value,names,objects));
+export const updateObjectsProps = createObjectsMapFunc(updateProp);
 
-export const updateObjectsPropsIf = R.curry((pred,value, names, objects) =>
-  createObjectsMapFuncIf(pred,updatePropIf,value,names,objects));
+export const updateObjectsPropsIf = createUpdateObjectIf(createObjectsMapFuncIf);
+

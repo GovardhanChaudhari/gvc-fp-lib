@@ -71,7 +71,7 @@ export const createNamesReduceFuncIf = R.curry((pred, func, value, names, obj) =
   createNamesReduceFunc(func(pred), value, names, obj));
 
 export const createObjectsMapFunc = R.curry((func, value, names, objects) =>
-  objects.map(createNamesReduceFunc(func,value,names)));
+  objects.map(createNamesReduceFunc(func, value, names)));
 
-export const createObjectsMapFuncIf = R.curry((pred,func, value, names, objects) =>
-  createObjectsMapFunc(func(pred),value,names,objects));
+export const createObjectsMapFuncIf = R.curry((pred, func, value, names, objects) =>
+  createObjectsMapFunc(func(pred), value, names, objects));
