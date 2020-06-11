@@ -65,13 +65,14 @@ export const createIfFunc = R.curry((func, pred, value, name, obj) =>
     : obj);
 
 export const createNamesReduceFunc = R.curry((func, value, names, obj) =>
-  names.reduce((acc, name) => func(value, name, acc), obj));
+  R.reduce((acc, name) => func(value, name, acc), obj, names));
 
-export const createNamesReduceFuncIf = R.curry((pred, func, value, names, obj) =>
-  createNamesReduceFunc(func(pred), value, names, obj));
+const createIteratorIfFunc = R.curry((itrCreateFunc, pred, func, value, names, objects) =>
+  itrCreateFunc(func(pred), value, names, objects));
+
+export const createNamesReduceFuncIf = createIteratorIfFunc(createNamesReduceFunc);
 
 export const createObjectsMapFunc = R.curry((func, value, names, objects) =>
-  objects.map(createNamesReduceFunc(func, value, names)));
+  R.map(createNamesReduceFunc(func, value, names), objects));
 
-export const createObjectsMapFuncIf = R.curry((pred, func, value, names, objects) =>
-  createObjectsMapFunc(func(pred), value, names, objects));
+export const createObjectsMapFuncIf = createIteratorIfFunc(createObjectsMapFunc);
