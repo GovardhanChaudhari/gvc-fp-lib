@@ -1,5 +1,7 @@
 // Note that following functions may mutate object var
 import R from "ramda";
+import {addProp} from "./AddProp";
+import {updateProp, updatePropIf} from "./UpdateProp";
 
 //TODO: Add parameter information for each function
 export const isNull = R.isNil;
@@ -39,7 +41,7 @@ const startFromFirst = 0;
 // Return array
 // export const removeNParams = (numberOfParamsToRemove) => R.curry((...params) => R.remove(startFromFirst, numberOfParamsToRemove, params));
 // const removeOneParam = removeNParams(1);
-export const removeOneParam = (...params) => R.remove(startFromFirst, 1 , params);
+export const removeOneParam = (...params) => R.remove(startFromFirst, 1, params);
 
 export const arrayToCommaSeparatedParams = func => array => func(...array);
 
@@ -47,12 +49,29 @@ export const executeValueFunc = (val, name, obj) => [val(obj[name]), name, obj];
 
 export const isPredicateTrue = (predicate, value, name, obj) => predicate(obj[name]);
 
-export const passResToFun = (func,res) => func(...res);
+export const passResToFun = (func, res) => func(...res);
 
-export const pipeFunc = (...params)=>R.pipeWith(passResToFun,params);
+export const pipeFunc = (...params) => R.pipeWith(passResToFun, params);
 
-export const paramToFunc = p=>()=>p;
+export const paramToFunc = p => () => p;
 
-export const toFunction = R.unless(isFunction,paramToFunc);
+export const toFunction = R.unless(isFunction, paramToFunc);
 
-export const toEvolveFunctionParam = (key,value)=>({[key]:toFunction(value)});
+export const toEvolveFunctionParam = (key, value) => ({[key]: toFunction(value)});
+
+export const createIfFunc = R.curry((func, pred, value, name, obj) =>
+  isPredicateTrue(pred, value, name, obj)
+    ? func(value, name, obj)
+    : obj);
+
+export const createNamesReduceFunc = R.curry((func, value, names, obj) =>
+  names.reduce((acc, name) => func(value, name, acc), obj));
+
+export const createNamesReduceFuncIf = R.curry((pred, func, value, names, obj) =>
+  createNamesReduceFunc(func(pred), value, names, obj));
+
+export const createObjectsMapFunc = R.curry((func, value, names, objects) =>
+  objects.map(createNamesReduceFunc(func,value,names)));
+
+export const createObjectsMapFuncIf = R.curry((pred,func, value, names, objects) =>
+  createObjectsMapFunc(func(pred),value,names,objects));
