@@ -2,7 +2,7 @@ import {
   isNot,
   isString,
   boolToString,
-  isStringEmpty,
+  isStringEmpty, isObject,
 } from "../src";
 import {
   BOOLEAN_TRUE,
@@ -60,6 +60,18 @@ describe("CommonUtils", () => {
     test("should return original value for non boolean, here 'true'", () => {
       const result = boolToString(STRING_BOOLEAN_TRUE);
       expect(result).toEqual(STRING_BOOLEAN_TRUE);
+    });
+  });
+
+  describe('isObject', function () {
+    it('should return true for object', function () {
+      const result = isObject({});
+      expect(result).toBeTruthy();
+    });
+
+    it('should return false for function', function () {
+      const result = isObject(() => 1);
+      expect(result).toBeFalsy();
     });
   });
 });
