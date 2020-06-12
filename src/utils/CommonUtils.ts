@@ -1,6 +1,5 @@
 // Note that following functions may mutate object var
 import R from "ramda";
-import {createIteratorIfFunc} from "./FactoryFuncUtils";
 //TODO: Add parameter information for each function
 
 export const isNull = R.isNil;
@@ -21,8 +20,6 @@ export const isObject = R.both(R.is(Object), not(isFunction));
 
 export const trimAndIsEmpty = R.pipe(R.trim, R.isEmpty);
 
-export const isNot = func => (...args) => !func(...args);
-
 export const isNullOrEmpty = R.either(isNull, R.isEmpty);
 
 export const isUndefined = value => typeof value === 'undefined';
@@ -31,9 +28,9 @@ export const isNullOrUndefined = R.either(isNull, isUndefined);
 
 export const isStringEmpty = R.both(isString, R.isEmpty);
 
-export const isTrimmedStringEmpty = R.ifElse(isString, trimAndIsEmpty, falseValue);
+export const isTrimmedStringEmpty = R.both(isString, trimAndIsEmpty);
 
-export const commaSeparatedString = R.join(",");
+export const toCommaSeparatedString = R.join(",");
 
 export const boolToString = R.when(isBoolean, R.toString);
 
@@ -53,8 +50,6 @@ export const isPredicateTrue = (predicate, value, name, obj) => {
 };
 
 export const passResToFun = (func, res) => func(...res);
-
-export const pipeFunc = (...params) => R.pipeWith(passResToFun, params);
 
 export const paramToFunc = p => () => p;
 

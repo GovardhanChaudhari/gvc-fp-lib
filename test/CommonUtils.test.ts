@@ -1,9 +1,10 @@
 import {
-  isNot,
+  not,
   isString,
   isObject,
   boolToString,
   isStringEmpty,
+  isTrimmedStringEmpty,
 } from "../src";
 
 import {
@@ -34,15 +35,15 @@ describe("CommonUtils", () => {
     });
   });
 
-  describe("isNot", () => {
+  describe("not", () => {
     test('Should return false if input satisfies condition', () => {
-      const isNotString = isNot(isString);
+      const isNotString = not(isString);
       const result = isNotString("");
       expect(result).toBe(false);
     });
 
     test('Should return true if input does not satisfy condition', () => {
-      const isNotString = isNot(isString);
+      const isNotString = not(isString);
       const result = isNotString(1);
       expect(result).toBe(true);
     });
@@ -73,6 +74,23 @@ describe("CommonUtils", () => {
 
     it('should return false for function', function () {
       const result = isObject(() => 1);
+      expect(result).toBeFalsy();
+    });
+  });
+
+  describe('isTrimmedStringEmpty', function () {
+    it('should return true for empty string with spaces', function () {
+      const result = isTrimmedStringEmpty(" ");
+      expect(result).toBeTruthy();
+    });
+
+    it('should return false for non empty string', function () {
+      const result = isTrimmedStringEmpty("1");
+      expect(result).toBeFalsy();
+    });
+
+    it('should return false for non string value', function () {
+      const result = isTrimmedStringEmpty(1);
       expect(result).toBeFalsy();
     });
   });
