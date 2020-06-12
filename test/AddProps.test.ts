@@ -1,8 +1,8 @@
 import {
   addProps,
   addPropsIf,
-  addObjectsProps,
-  addObjectsPropsIf,
+  addPropsToObjects,
+  addPropsToObjectsIf,
 } from "../src";
 
 describe("AddProps", () => {
@@ -38,9 +38,9 @@ describe("AddProps", () => {
     });
   });
 
-  describe("addObjectsProps", () => {
+  describe("addPropsToObjects", () => {
     test('should return updated objects array', () => {
-      const updatePropXWith4 = addObjectsProps(4, ["x", "y"]);
+      const updatePropXWith4 = addPropsToObjects(4, ["x", "y"]);
       const expected = [{x: 4, y: 4}];
       const result = updatePropXWith4([{x: 1, y: 2}]);
       expect(result).toEqual(expected);
@@ -54,9 +54,9 @@ describe("AddProps", () => {
     });*/
   });
 
-  describe("addObjectsPropsIf", () => {
+  describe("addPropsToObjectsIf", () => {
     test('Should update objects if condition is true', () => {
-      const updatePropX = addObjectsPropsIf(x => x > 0, 4, ["x", "y"]);
+      const updatePropX = addPropsToObjectsIf(x => x > 0, 4, ["x", "y"]);
       const expected = [{x: 4, y: 0}];
       const result = updatePropX([{x: 1, y: 0}]);
       expect(result).toEqual(expected);
