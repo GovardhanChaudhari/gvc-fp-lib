@@ -1,10 +1,5 @@
-import {
-  isNot,
-  isNullOrEmpty,
-  commaSeparatedString,
-} from "../src";
-
 import {addProp, addPropIf} from "../src/utils/AddProp";
+import {isNot, isNullOrEmpty} from "../src";
 
 describe("addProp", () => {
 
@@ -17,19 +12,19 @@ describe("addProp", () => {
       expect(result).toEqual(expected);
     });
 
-/*    test('should return updated object for function returning value', () => {
-      const updatePropXWith4 = updateProp(() => 4, "x");
-      const expected = {x: 4};
-      const result = updatePropXWith4({x: 1});
-      expect(result).toEqual(expected);
-    });*/
+    /*    test('should return updated object for function returning value', () => {
+          const updatePropXWith4 = updateProp(() => 4, "x");
+          const expected = {x: 4};
+          const result = updatePropXWith4({x: 1});
+          expect(result).toEqual(expected);
+        });*/
   });
 
   describe("updatePropIf", () => {
     test('Should update object if condition is true', () => {
       const updatePropX = addPropIf(x => x > 0);
       const expected = {x: 4};
-      const result = updatePropX(4, "x",{x: 1});
+      const result = updatePropX(4, "x", {x: 1});
       expect(result).toEqual(expected);
     });
 

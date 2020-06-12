@@ -5,8 +5,8 @@ import {
   addObjectsPropsIf,
 } from "../src";
 
-describe("UpdateProps", () => {
-  describe("updateProps", () => {
+describe("AddProps", () => {
+  describe("addProps", () => {
     test('should return updated object', () => {
       const updatePropXWith4 = addProps(4, ["x", "y"]);
       const expected = {x: 4, y: 4};
@@ -22,7 +22,7 @@ describe("UpdateProps", () => {
     });
   });
 
-  describe("updatePropsIf", () => {
+  describe("addPropsIf", () => {
     test('should return updated object for true predicate', () => {
       const updatePropXWith4 = addPropsIf(x => x > 0, 4, ["x", "y"]);
       const expected = {x: 4, y: 4};
@@ -38,7 +38,7 @@ describe("UpdateProps", () => {
     });
   });
 
-  describe("updateObjectsProps", () => {
+  describe("addObjectsProps", () => {
     test('should return updated objects array', () => {
       const updatePropXWith4 = addObjectsProps(4, ["x", "y"]);
       const expected = [{x: 4, y: 4}];
@@ -54,21 +54,13 @@ describe("UpdateProps", () => {
     });*/
   });
 
-  describe("updateObjectsPropsIf", () => {
+  describe("addObjectsPropsIf", () => {
     test('Should update objects if condition is true', () => {
       const updatePropX = addObjectsPropsIf(x => x > 0, 4, ["x", "y"]);
       const expected = [{x: 4, y: 0}];
       const result = updatePropX([{x: 1, y: 0}]);
       expect(result).toEqual(expected);
     });
-
-    // This feature is not yet implemented
-    /*test('Should update objects if condition is true for two different props', () => {
-      const updatePropX = updateObjectsPropsIf(({x, y}) => x > 0 && y > 1, 4, ["x", "y"]);
-      const expected = [{x: 4, y: 4}];
-      const result = updatePropX([{x: 1, y: 0},{x: 1, y: 2}]);
-      expect(result).toEqual(expected);
-    });*/
   });
 });
 

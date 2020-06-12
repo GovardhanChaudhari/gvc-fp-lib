@@ -1,9 +1,11 @@
 import {
   isNot,
   isString,
+  isObject,
   boolToString,
-  isStringEmpty, isObject,
+  isStringEmpty,
 } from "../src";
+
 import {
   BOOLEAN_TRUE,
   BOOLEAN_FALSE,

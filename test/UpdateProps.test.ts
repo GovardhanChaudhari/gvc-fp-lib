@@ -1,4 +1,9 @@
-import {updateObjectsProps, updateObjectsPropsIf, updateProps, updatePropsIf} from "../src";
+import {
+  updateProps,
+  updatePropsIf,
+  updateObjectsProps,
+  updateObjectsPropsIf
+} from "../src";
 
 describe("UpdateProps", () => {
   describe("updateProps", () => {
@@ -40,14 +45,14 @@ describe("UpdateProps", () => {
     });
 
     test('should return updated object for true object predicate but prop is missing in predicate', () => {
-      const updatePropXWith4 = updatePropsIf({x: x => x > 0, z: y => y > 1}, 4, ["x","y"]);
+      const updatePropXWith4 = updatePropsIf({x: x => x > 0, z: y => y > 1}, 4, ["x", "y"]);
       const expected = {x: 4, y: 2};
       const result = updatePropXWith4({x: 1, y: 2});
       expect(result).toEqual(expected);
     });
 
     test('should return updated object for true object predicate but prop is missing in input object', () => {
-      const updatePropXWith4 = updatePropsIf({x: x => x > 0, y: y => y > 1}, 4, ["x","y"]);
+      const updatePropXWith4 = updatePropsIf({x: x => x > 0, y: y => y > 1}, 4, ["x", "y"]);
       const expected = {x: 4};
       const result = updatePropXWith4({x: 1});
       expect(result).toEqual(expected);
