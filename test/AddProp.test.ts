@@ -1,13 +1,11 @@
-import {addProp, addPropIf} from "../src/utils/AddProp";
-import {isNullOrEmpty, not} from "../src";
+import { addProp, addPropIf } from "../src";
+import { isNullOrEmpty, not } from "../src";
 
 describe("addProp", () => {
-
   describe("addProp", () => {
-
-    test('should return updated object for simple value', () => {
+    test("should return updated object for simple value", () => {
       const updatePropXWith4 = addProp(4, "x");
-      const expected = {x: 4};
+      const expected = { x: 4 };
       const result = updatePropXWith4({});
       expect(result).toEqual(expected);
     });
@@ -21,10 +19,10 @@ describe("addProp", () => {
   });
 
   describe("updatePropIf", () => {
-    test('Should update object if condition is true', () => {
-      const updatePropX = addPropIf(x => x > 0);
-      const expected = {x: 4};
-      const result = updatePropX(4, "x", {x: 1});
+    test("Should update object if condition is true", () => {
+      const updatePropX = addPropIf((x) => x > 0);
+      const expected = { x: 4 };
+      const result = updatePropX(4, "x", { x: 1 });
       expect(result).toEqual(expected);
     });
 
@@ -42,10 +40,10 @@ describe("addProp", () => {
       expect(result).toEqual(expected);
     });*/
 
-    test('Should not object if condition is false', () => {
+    test("Should not object if condition is false", () => {
       const updatePropX = addPropIf(not(isNullOrEmpty), 4, "x");
-      const expected = {x: null};
-      const result = updatePropX({x: null});
+      const expected = { x: null };
+      const result = updatePropX({ x: null });
       expect(result).toEqual(expected);
     });
 

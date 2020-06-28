@@ -22,7 +22,7 @@ export const trimAndIsEmpty = R.pipe(R.trim, R.isEmpty);
 
 export const isNullOrEmpty = R.either(isNull, R.isEmpty);
 
-export const isUndefined = value => typeof value === 'undefined';
+export const isUndefined = (value) => typeof value === "undefined";
 
 export const isNullOrUndefined = R.either(isNull, isUndefined);
 
@@ -38,9 +38,10 @@ export const commaSeparated = R.when(Array.isArray, R.join(","));
 
 const startFromFirst = 0;
 
-export const removeOneParam = (...params) => R.remove(startFromFirst, 1, params);
+export const removeOneParam = (...params) =>
+  R.remove(startFromFirst, 1, params);
 
-export const arrayToCommaSeparatedParams = func => array => func(...array);
+export const arrayToCommaSeparatedParams = (func) => (array) => func(...array);
 
 export const executeValueFunc = (val, name, obj) => [val(obj[name]), name, obj];
 
@@ -51,8 +52,10 @@ export const isPredicateTrue = (predicate, value, name, obj) => {
 
 export const passResToFun = (func, res) => func(...res);
 
-export const paramToFunc = p => () => p;
+export const paramToFunc = (p) => () => p;
 
 export const toFunction = R.unless(isFunction, paramToFunc);
 
-export const toEvolveFunctionParam = (key, value) => ({[key]: toFunction(value)});
+export const toEvolveFunctionParam = (key, value) => ({
+  [key]: toFunction(value),
+});
