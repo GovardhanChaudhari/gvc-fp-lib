@@ -1,8 +1,7 @@
 import R from "ramda";
 import {log} from "util";
-import {pipeFunc, removeOneParam} from "./utils/CommonUtils";
 
-const name="x";
+const name='x';
 const names = [name,"y"];
 const value = 4;
 const obj = {x:1,y:2};

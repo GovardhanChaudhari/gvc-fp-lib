@@ -16,7 +16,8 @@
     "crt": "ts-node src/RamdaTest.ts",
     "test": "jest",
     "td": "jest --watch",
-    "tr": "ts-node-dev --respawn --transpileOnly --no-notify src/RamdaTest.ts"
+    "tr": "ts-node-dev --respawn --transpileOnly --no-notify src/RamdaTest.ts",
+    "update-log": "auto-changelog -p --output HISTORY.md"
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
@@ -31,7 +32,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "auto-changelog": "^2.2.0",
     "lodash": "^4.17.15",
     "ramda": "^0.27.0"
+  },
+  "auto-changelog": {
+    "output": "HISTORY.md",
+    "unreleased": true,
+    "commitLimit": false,
+    "issuePattern": ".*",
+    "template": "keepachangelog"
   }
 }
