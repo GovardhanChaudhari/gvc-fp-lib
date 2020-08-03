@@ -16,7 +16,7 @@
     "crt": "ts-node src/RamdaTest.ts",
     "test": "jest",
     "td": "jest --watch",
-    "tr": "ts-node-dev --respawn --transpileOnly --no-notify src/RamdaTest.ts"
+    "tr": "ts-node-dev --respawn --transpile-only --no-notify src/RamdaTest.ts"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
